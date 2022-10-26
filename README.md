@@ -58,7 +58,7 @@ Number of wells of the pooling plate. Currently must be either 96 or 384.
 Provide the list of oligos in row first (A1, A2, A3, etc) order if True, otherwise provide this list in column first order (A1, B1, C1, etc).
 
 ### Output
-An object that contains the oligo and primer designs and plate maps in one of XLSX, JSON or some other requested format. See below for an example of the JSON output.
+An object that contains the oligo and primer designs, plate maps, and visualization  in JSON. See below for an example of the JSON output.
 
 ### Error Handling
 If the design parameters are invalid or result in an invalid design (low success of assembly, or doesn’t match parameters) verbose errors are returned for resolution.
@@ -409,14 +409,17 @@ Once the design is complete, there will be a `Finished` field in the response an
   "Other": {
     "emails": "your@email.com",
     "Job Id": "b2816ba3-3390-437b-a37c-03fc1238db94"
+
   },
   "Finished": "b2816ba3-3390-437b-a37c-03fc1238db94"
 }
 ```
 
 
-## Sequence Design
+## Sequence Complexity
 The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (dark green), high (red) and low (blue) GC regions, and a large palindromic/hairpin region (yellow). The lighter green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
+
+![Example Sequence Complexity](https://user-images.githubusercontent.com/2830915/198149926-c25d8087-bf99-4407-9292-45f94a053e1d.png)
 
 
 
