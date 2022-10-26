@@ -93,12 +93,12 @@ curl -0 -X POST "https://homologypath.com/router/" \
           {
              "sequence_name":"example1",
              "sequence":"ATGGGGACCGGATCCGGATCGGGATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA",
-             "primer_length": 20,
+             "primer_length":"20"
           },
           {
              "sequence_name":"example2",
              "sequence":"ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCGTCCGGATCGCGAA",
-             "primer_length": 20,
+             "primer_length":"20"
           }
        ],
        "oligo_design_parameters":{
@@ -141,7 +141,277 @@ curl -0 -X GET "https://homologypath.com/router/" \
 -H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
 -H "Content-Type: application/json" \
 -d \
-'{"api": "oligo_design", "job_id":"aaa3f59b-3dfe-4154-9dba-4832b6d2e1a3"}'
+'{"api": "oligo_design", "job_id":"b2816ba3-3390-437b-a37c-03fc1238db94"}'
+```
+
+Once the design is complete, there will be a `Finished` field in the response and should look similar to the following:
+
+```
+{
+  "Design": {
+    "Oligo Order Form": [
+      [
+        "Plate Name",
+        "Well Position",
+        "Sequence Name",
+        "Sequence",
+        "Scale",
+        "Purification",
+        "Normalization Style",
+        "Quantity (nmoles)",
+        "Concentration (µM)",
+        "Volume (µL)",
+        "Buffer",
+        "Notes"
+      ],
+      [
+        "design01 oligo plate 1",
+        "A01",
+        "example1_20221026-215035_0",
+        "ATGGGGACCGGATCCGGATCGGGATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA",
+        "25 nmole DNA Plate Oligo",
+        "Standard Desalting",
+        "Full Yield",
+        "100",
+        "100",
+        "100",
+        "",
+        ""
+      ],
+      [
+        "design01 oligo plate 1",
+        "A02",
+        "example2_20221026-215035_0",
+        "ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCGT",
+        "25 nmole DNA Plate Oligo",
+        "Standard Desalting",
+        "Full Yield",
+        "100",
+        "100",
+        "100",
+        "",
+        ""
+      ],
+      [
+        "design01 oligo plate 1",
+        "A03",
+        "example2_20221026-215035_1",
+        "TTCGCGATCCGGACGATCCGGATCCGGTGCGAGATCC",
+        "25 nmole DNA Plate Oligo",
+        "Standard Desalting",
+        "Full Yield",
+        "100",
+        "100",
+        "100",
+        "",
+        ""
+      ]
+    ],
+    "Oligo Plate Map": [
+      [
+        "Seq ID",
+        "Source Plate",
+        "Source Well",
+        "Destination Plate",
+        "Destination Well"
+      ],
+      [
+        "example1",
+        "design01 oligo plate 1",
+        "A01",
+        "final plate 1",
+        "A01"
+      ],
+      [
+        "example2",
+        "design01 oligo plate 1",
+        "A02",
+        "final plate 1",
+        "A02"
+      ],
+      [
+        "example2",
+        "design01 oligo plate 1",
+        "A03",
+        "final plate 1",
+        "A02"
+      ]
+    ],
+    "Primer Order Form": [
+      [
+        "Plate Name",
+        "Well Position",
+        "Sequence Name",
+        "Sequence",
+        "Scale",
+        "Purification",
+        "Normalization Style",
+        "Quantity (nmoles)",
+        "Concentration (µM)",
+        "Volume (µL)",
+        "Buffer",
+        "Notes"
+      ],
+      [
+        "design01 primer plate 1",
+        "A01",
+        "example1_20221026-215035_fwd",
+        "ATGGGGACCGGATCCGGATCG",
+        "25 nmole DNA Plate Oligo",
+        "Standard Desalting",
+        "Full Yield",
+        "100",
+        "100",
+        "100",
+        "",
+        ""
+      ],
+      [
+        "design01 primer plate 1",
+        "A02",
+        "example1_20221026-215035_rev",
+        "TTTCGCTTTCCGATCCGGATCCG",
+        "25 nmole DNA Plate Oligo",
+        "Standard Desalting",
+        "Full Yield",
+        "100",
+        "100",
+        "100",
+        "",
+        ""
+      ],
+      [
+        "design01 primer plate 1",
+        "A03",
+        "example2_20221026-215035_fwd",
+        "ATGCCGGACGGATCCGGATC",
+        "25 nmole DNA Plate Oligo",
+        "Standard Desalting",
+        "Full Yield",
+        "100",
+        "100",
+        "100",
+        "",
+        ""
+      ],
+      [
+        "design01 primer plate 1",
+        "A04",
+        "example2_20221026-215035_rev",
+        "TTCGCGATCCGGACGATCCG",
+        "25 nmole DNA Plate Oligo",
+        "Standard Desalting",
+        "Full Yield",
+        "100",
+        "100",
+        "100",
+        "",
+        ""
+      ]
+    ],
+    "Primer Plate Map": [
+      [
+        "Seq ID",
+        "Source Plate",
+        "Source Well",
+        "Destination Plate",
+        "Destination Well"
+      ],
+      [
+        "example1",
+        "design01 primer plate 1",
+        "A01",
+        "final plate 1",
+        "A01"
+      ],
+      [
+        "example1",
+        "design01 primer plate 1",
+        "A02",
+        "final plate 1",
+        "A01"
+      ],
+      [
+        "example2",
+        "design01 primer plate 1",
+        "A03",
+        "final plate 1",
+        "A02"
+      ],
+      [
+        "example2",
+        "design01 primer plate 1",
+        "A04",
+        "final plate 1",
+        "A02"
+      ]
+    ],
+    "Oligo Info": [
+      [
+        "Seq Id",
+        "Oligo Id",
+        "Recycled",
+        "Cut Position",
+        "Strand",
+        "Source Plate Well",
+        "Destination Plate Wells",
+        "Sequence",
+        "Sequence Length"
+      ],
+      [
+        "example1",
+        "example1_20221026-215035_0",
+        "False",
+        "(0, 56)",
+        "1",
+        "(1, 'A01')",
+        "[(1, 'A01')]",
+        "ATGGGGACCGGATCCGGATCGGGATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA\n",
+        57
+      ],
+      [
+        "example2",
+        "example2_20221026-215035_0",
+        "False",
+        "(0, 50)",
+        "1",
+        "(1, 'A02')",
+        "[(1, 'A02')]",
+        "ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCGT\n",
+        51
+      ],
+      [
+        "example2",
+        "example2_20221026-215035_1",
+        "False",
+        "(25, 62)",
+        "-1",
+        "(1, 'A03')",
+        "[(1, 'A02')]",
+        "TTCGCGATCCGGACGATCCGGATCCGGTGCGAGATCC\n",
+        38
+      ]
+    ]
+  },
+  "Design URL": "https://storage.googleapis.com/0446c3ad-f0af-481f-9c9f-68ccdf8370cc/OligoDesigns/job_b2816ba3-3390-437b-a37c-03fc1238db94.zip?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=ninthbio%40ninthbio.iam.gserviceaccount.com%2F20221026%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20221026T215036Z&X-Goog-Expires=604800&X-Goog-SignedHeaders=host&X-Goog-Signature=1aea2de5420ddde3984906a2f9f3d7afc375b3a08d3bc5f170ca94dbe987e42e8ec2de5d13eee81d1391de00293f76de9f2ae60cb7ca53a9d96f87ce98059d8a312a1c1bd8bed621330529347c18ce91b1a7d76d5d8d81c0c0785119bab8ecdbc1c07d72286d6c816bd256430425ab93bc821483986ceaaf8af0cc2089c1a60f7c5b80114c444ee5e635c94649a635a2afc1a21073e68f813ea0fe73de23096a1b509bcf26be7339789f7b0fab764af7b7f3f8f9060e676c9e175845f2877db82e20209ddc42c60d57a3f0dfeb9099aa52eafe12812c8e86f37559d201532dff66cf268670a65b332a0aaac6b71e6b280a6d2470aee264b99642eebb927991dd",
+  "Design Info": {
+    "Total sequences": 2,
+    "Total pre-recycle oligos": 3,
+    "Total post-recycle oligos": 3,
+    "Total pre-recycle bases": 143,
+    "Total post-recycle bases": 143,
+    "Total bases recycled": 0,
+    "Recycle efficiency": 0,
+    "Design Errors": []
+  },
+  "Design Errors": [],
+  "Design SVG": "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<svg baseProfile=\"full\" height=\"336.0\" version=\"1.1\" width=\"970\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs /><g style=\"font-size:16px;font-family:Courier;font-face:bold;\"><text fill=\"rgb(0,0,0)\" style=\"white-space: pre\" textLength=\"80\" x=\"0\" y=\"16.0\">example1</text><text fill=\"rgb(0,0,0)\" style=\"white-space: pre\" textLength=\"560\" x=\"300\" y=\"16.0\">ATGGGGACCGGATCCGGATCGGGATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA</text><text fill=\"rgb(0,0,0)\" style=\"white-space: pre\" textLength=\"570\" x=\"300\" y=\"32.0\">1        10        20        30        40        50      </text><text fill=\"rgb(165,33,243)\" style=\"white-space: pre\" textLength=\"560\" x=\"300\" y=\"72.0\">ATGGGGACCGGATCCGGATCGGGATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA</text><text fill=\"rgb(165,33,243)\" style=\"white-space: pre\" textLength=\"260\" x=\"450.0\" y=\"120.0\">example1_20221026-215035_0</text><text fill=\"rgb(0,0,0)\" style=\"white-space: pre\" textLength=\"80\" x=\"0\" y=\"184.0\">example2</text><text fill=\"rgb(0,0,0)\" style=\"white-space: pre\" textLength=\"620\" x=\"300\" y=\"184.0\">ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCGTCCGGATCGCGAA</text><text fill=\"rgb(0,0,0)\" style=\"white-space: pre\" textLength=\"630\" x=\"300\" y=\"200.0\">1        10        20        30        40        50        60  </text><text fill=\"rgb(185,212,196)\" style=\"white-space: pre\" textLength=\"500\" x=\"300\" y=\"240.0\">ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCGT</text><text fill=\"rgb(185,212,196)\" style=\"white-space: pre\" textLength=\"260\" x=\"420.0\" y=\"288.0\">example2_20221026-215035_0</text><text fill=\"rgb(131,184,224)\" style=\"white-space: pre\" textLength=\"370\" x=\"550\" y=\"264.0\">CCTAGAGCGTGGCCTAGGCCTAGCAGGCCTAGCGCTT</text><text fill=\"rgb(131,184,224)\" style=\"white-space: pre\" textLength=\"260\" x=\"605.0\" y=\"312.0\">example2_20221026-215035_1</text></g></svg>",
+  "Other": {
+    "emails": "your@email.com",
+    "Job Id": "b2816ba3-3390-437b-a37c-03fc1238db94"
+  },
+  "Finished": "b2816ba3-3390-437b-a37c-03fc1238db94"
+}
 ```
 
 
