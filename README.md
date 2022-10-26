@@ -78,9 +78,11 @@ Library
 
 ### Technical Examples
 
+Below is an example of a command line to POST a job request to the Oligo Design API.
+
 ```
 curl -0 -X POST "https://homologypath.com/router/" \
--H "Authorization: Token 2fb15ad154d14b466600d43b0d586b18e247426f" \
+-H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
 -H "Content-Type: application/json" \
 -d \
 '
@@ -90,11 +92,13 @@ curl -0 -X POST "https://homologypath.com/router/" \
        "sequences":[
           {
              "sequence_name":"example1",
-             "sequence":"ATGGGGACCGGATCCGGATCGGGATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA"
+             "sequence":"ATGGGGACCGGATCCGGATCGGGATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA",
+             "primer_length": 20,
           },
           {
              "sequence_name":"example2",
-             "sequence":"ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCGTCCGGATCGCGAA"
+             "sequence":"ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCGTCCGGATCGCGAA",
+             "primer_length": 20,
           }
        ],
        "oligo_design_parameters":{
@@ -115,7 +119,7 @@ curl -0 -X POST "https://homologypath.com/router/" \
        "design_name":"design01",
        "source_plate_size":"384",
        "destination_plate_size":"384",
-       "emails":"guzbit@gmail.com",
+       "emails":"your@email.com",
        "row_major":"true",
        "recycle_oligos":"true",
        "partition_identity":"0.95"
@@ -124,8 +128,26 @@ curl -0 -X POST "https://homologypath.com/router/" \
 
 ```
 
+A successful response will be a JSON object containing the `job_id` of the requested Oligo Design similar to the following:
+
+```
+{"job_id":"b2816ba3-3390-437b-a37c-03fc1238db94"}
+```
+
+This `job_id` can be used to POST a request to the API for information about the job, for example:
+
+```
+curl -0 -X GET "https://homologypath.com/router/" \
+-H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
+-H "Content-Type: application/json" \
+-d \
+'{"api": "oligo_design", "job_id":"aaa3f59b-3dfe-4154-9dba-4832b6d2e1a3"}'
+```
 
 
 ## Sequence Design
 The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (dark green), high (red) and low (blue) GC regions, and a large palindromic/hairpin region (yellow). The lighter green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
+
+
+
 
