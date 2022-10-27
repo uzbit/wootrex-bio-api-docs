@@ -11,63 +11,67 @@ The API accepts a JSON object containing the following:
 A required string specifying which API is being requested. Valid strings are: "oligo_design", "sequence_complexity", "sequence_design"
 
 #### Required Parameters
-A required JSON object containing all three of the following entries:
+**required_parameters**: A required JSON object containing all three of the following entries:
 
-###### Sequence Records
-A list of JSON objects of sequence records that include the following:
+###### Sequences
+**sequences**: A list of JSON objects of sequence records that include the following:
 
-1. **Sequence Name**: String, a unique name for each sequence.
-2. **Sequence**: String, ambiguous/unambiguous DNA sequence.
+1. **sequence_name**: String, a unique name for each sequence.
+2. **sequence**: String, ambiguous/unambiguous DNA sequence.
+3. **primer_length**: Integer, number of base pairs for the amplification primer.
 
 ###### Oligo Design Parameters
-A JSON object containing the following:
+**oligo_design_parameters**: A JSON object containing the following:
 
-1. **Minimum Length**: Integer, default 30
+1. **minimum_length**: Integer, default 30
 The minimum size in base pairs allowed for any oligo in the design. 
-2. **Target Length**: Integer, default 50 
+2. **target_length**: Integer, default 50 
 The target size in base pairs for an oligo to start with during design. 
-3. **Maximum Length**: Integer, default 60 
+3. **maximum_length**: Integer, default 60 
 The maximum size in base pairs allowed for any oligo in the design. 
-4. **Minimum Overlap**: Integer, default 15
+4. **minimum_overlap**: Integer, default 15
 The minimum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
-5. **Maximum Overlap**: Integer, default 25
+5. **maximum_overlap**: Integer, default 25
 The maximum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
 
 ###### Primer Design Parameters 
-A JSON object containing the following:
+**primer_design_parameters**: A JSON object containing the following:
 
-1. **Target Primer Length**: Integer, default 20
+1. **target_primer_length**: Integer, default 20
 The minimum size in base pairs allowed for any oligo in the design. 
-2. **TM Optimize Primers**: Boolean, default True
+2. **tm_optimize_primers**: Boolean, default True
 Wether or not to melting temperature (TM) optimize the amplification primers. 
-3. **Target Primer Temperature**: Integer, default 60
-The temperature (in degrees Celcius) at wich PCA is performed. This is only used if **TM Optimize Primers** is **True**
+3. **target_primer_tm_temp**: Integer, default 60
+The temperature (in degrees Celsius) at wich PCA is performed. This is only used if **tm_optimize_primers** is **True**
 
 
 #### Optional Parameters
-An optional JSON object containing any of the following:
+**optional_parameters**: An optional JSON object containing any of the following:
 
-1. **Design Type**: String, default "maximize_recycling".
+1. **design_type**: String, default "maximize_recycling".
 Specifies the type of Oligo Design to perform. Valid types are: "maximize_recycling", "minimize_complexity", "gapped_design", "standard"
-2. **Design Name**: String, default "design01"
+2. **design_name**: String, default "design01"
 User specified name for the design. The files emailed will have this name.
-3. **Recycle Oligos**: Boolean, default True.
+3. **recycle_oligos**: Boolean, default True.
 Perform oligo recycling across the entire set of sequences provided in Sequence Records.
-4. **Source Plate Size**: Integer, default 96.
+4. **source_plate_size**: Integer, default 96.
 Number of wells of the oligo plate to order from the oligo manufacturer. Currently must be either 96 or 384. 
-5. **Destination Plate Size**: Integer, default 96.
+5. **destination_plate_size**: Integer, default 96.
 Number of wells of the pooling plate. Currently must be either 96 or 384. 
-6. **Row Major**: Boolean, default True
+6. **row_major**: Boolean, default True
 Provide the list of oligos in row first (A1, A2, A3, etc) order if True, otherwise provide this list in column first order (A1, B1, C1, etc).
-7. **Emails**: String, default is empty
+7. **emails**: String, default is empty
 A comma separated list of emails to which to send the design files.
-8. **Partition Identity**: Float, default 0.95
+8. **partition_identity**: Float, default 0.95
 Used only for Design Type = "maximize_recycling". This is used to help inform the Oligo Design about how best to partition the sequences for maximizing the recycling. Tuning this parameter will affect the overall recycle efficiency. This should be a number between 0.0 and 1.0.
-9. **Minimum Z-score Cutoff**: Float, default -4.0
+9. **min_zscore_cutoff**: Float, default -4.0
 Used only for Design Type = "minimize_complexity". This is used to help inform the Oligo Design how to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
-10. **Temp**: Float, default 60.0
+10. **temp**: Float, default 60.0
 Used only for Design Type = "minimize_complexity". This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
-
+11. **optimize_overlap_tm**: Boolean, default False (NOT IMPLEMENTED AT API LEVEL YET)
+Make oligo overlaps TM optimized to **overlap_tm_target_temp**
+12. **overlap_tm_target_temp**: Float, default 60.0 (NOT IMPLEMENTED AT API LEVEL YET)
+This should correspond to the target PCA temperature (degrees Celsius). 
 
 ### Output
 An object that contains the oligo and primer designs, plate maps, and visualization  in JSON. See below for an example of the JSON output.
@@ -77,7 +81,7 @@ If the design parameters are invalid or result in an invalid design (low success
 
 ### Use Cases
 #### Homology Path
-- Oligo Design is fully implemented in the Ninth Bio Homology Path software suite.
+- Oligo Design is fully implemented in the Ninth Bio Homology Path software suite
 #### RESTful Web Service
 - Secure network interface
 - Could be on the internet or private network
@@ -85,7 +89,6 @@ If the design parameters are invalid or result in an invalid design (low success
 - Could interact with customer databases
 #### Command Line
 - Same advantages as above, but additionally can run on a network isolated computer
-Library
 
 
 ### Technical Examples
@@ -433,4 +436,89 @@ The Sequence Complexity bioinformatics software package and API provide a simple
 
 ![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/198150261-7c6844a1-d53e-4712-85ef-1029701144a9.png)
 
+### Parameters
+The API accepts a JSON object containing the following:
 
+#### API
+A required string specifying which API is being requested. Valid strings are: "oligo_design", "sequence_complexity", "sequence_design"
+
+#### Required Parameters
+**required_parameters**: A required JSON object containing all three of the following entries:
+
+###### Sequences
+**sequences**: A list of JSON objects of sequence records that include the following:
+
+1. **sequence_name**: String, a unique name for each sequence.
+2. **sequence**: String, ambiguous/unambiguous DNA sequence.
+
+###### Sequence Complexity Parameters
+**sequence_complexity_parameters**: A JSON object containing the following:
+
+The following Oligo Design parameters are used in the ΔG simulation and should represent a potential Oligo Design for assembly. 
+1. **minimum_length**: Integer, default 30
+The minimum size in base pairs allowed for any oligo in the design. 
+2. **target_length**: Integer, default 50 
+The target size in base pairs for an oligo to start with during design. 
+3. **maximum_length**: Integer, default 60 
+The maximum size in base pairs allowed for any oligo in the design. 
+4. **minimum_overlap**: Integer, default 15
+The minimum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
+5. **maximum_overlap**: Integer, default 25
+The maximum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
+6. **minimum_zscore_cutoff**: Float, default -4.0
+This is used to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
+7. **temp**: Float, default 60.0
+This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
+
+### Output
+An object that contains ___ in JSON. See below for an example of the JSON output.
+
+### Error Handling
+If the complexity parameters are invalid or result in an invalid complexity, verbose errors are returned for resolution.
+
+### Use Cases
+#### Homology Path
+- Sequence Complexity is fully implemented in the Ninth Bio Homology Path software suite
+#### RESTful Web Service
+- Secure network interface
+- Could be on the internet or private network
+- Could take JSON as input and output
+- Could interact with customer databases
+#### Command Line
+- Same advantages as above, but additionally can run on a network isolated computer
+
+
+### Technical Examples
+
+Below is an example of a command line to POST a job request to the Sequence Complexity API.
+
+```
+curl -0 -X POST "https://homologypath.com/router/" \
+-H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
+-H "Content-Type: application/json" \
+-d \
+'
+{
+    "api":"sequence_complexity",
+    "required_parameters":{
+       "sequences":[
+          {
+             "sequence_name":"example1",
+             "sequence":"ATGGGGACCGGATCCGGATCGGGATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA"
+          },
+          {
+             "sequence_name":"example2",
+             "sequence":"ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCGTCCGGATCGCGAA"
+          }
+       ],
+       "sequence_complexity_parameters":{
+          "minimum_length":"25",
+          "target_length":"30",
+          "maximum_length":"40",
+          "minimum_overlap":"15",
+          "maximum_overlap":"25",
+          "minimum_zscore_cutoff":"-4.0",
+          "temp":"60"
+       }
+    }
+}'
