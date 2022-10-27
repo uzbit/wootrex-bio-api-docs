@@ -2,16 +2,16 @@
 
 ## Oligo Design
 
-The Oligo Design bioinformatics software package and API provide a simple and intuitive method to create single stranded oligonucleotide sequences that, when pooled together, assemble into the requested sequence. It also provides an ability to take a library of sequences with homologous and variable regions and create a design across the entire library that minimizes the number of homologous region oligos, while also preserving the required variable region oligos. Primers for amplification are additionally produced and recycled where necessary. Both the oligo design and the primer design are presented with their respective plate maps for ease of automation in the wet lab. The output is easily consumed by all major oligo manufacturers such as IDT, Twist, etc. 
+The Oligo Design bioinformatics software package and API provide a simple and intuitive method to create single stranded oligonucleotide sequences that, when pooled together, assemble into the requested double stranded DNA molecule. It also provides an ability to take a library of sequences with homologous and variable regions and create a design across the entire library that minimizes the number of homologous region oligos, while also preserving the required variable region oligos. Primers for amplification are provided and recycled where possible. Both the oligo design and the primer design are presented with their respective plate maps for ease of automation in the wet lab. The output is easily consumed by all major oligo manufacturers such as IDT, Twist, etc. 
 
 ### Parameters
 The API accepts a JSON object containing the following:
 
 #### API
-A required string specifying which API is being requested. Valid strings are: "oligo_design", "sequence_complexity", "sequence_design"
+**api**: A required string specifying which API is being requested. Valid strings are: "oligo_design", "sequence_complexity", "sequence_design"
 
 #### Required Parameters
-**required_parameters**: A required JSON object containing all three of the following entries:
+**required_parameters**: A required JSON object containing the following entries:
 
 ###### Sequences
 **sequences**: A list of JSON objects of sequence records that include the following:
@@ -91,7 +91,7 @@ If the design parameters are invalid or result in an invalid design (low success
 - Same advantages as above, but additionally can run on a network isolated computer
 
 
-### Technical Examples
+### API Request Examples
 
 Below is an example of a command line to POST a job request to the Oligo Design API.
 
@@ -159,7 +159,7 @@ curl -0 -X POST "https://homologypath.com/router/" \
 '{"api": "oligo_design", "job_id":"b2816ba3-3390-437b-a37c-03fc1238db94"}'
 ```
 
-Depending on how large the request was, this polling request may need to be done periodically until it's completed the calculation. Once the design is complete, there will be a `Finished` field and the response should look similar to the following:
+Depending on how large the request was, this polling request may need to be done periodically until the calculation is complete. Once the design is complete, there will be a `Finished` field and the response should look similar to the following:
 
 ```
 {
@@ -432,7 +432,7 @@ Depending on how large the request was, this polling request may need to be done
 
 
 ## Sequence Complexity
-The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (dark green), high (red) and low (blue) GC regions, and a large palindromic/hairpin region (yellow). The lighter green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
+The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos for a given sequence. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (dark green), high (red) and low (blue) GC regions, and a large palindromic/hairpin region (yellow). The lighter green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
 
 ![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/198150261-7c6844a1-d53e-4712-85ef-1029701144a9.png)
 
@@ -440,10 +440,10 @@ The Sequence Complexity bioinformatics software package and API provide a simple
 The API accepts a JSON object containing the following:
 
 #### API
-A required string specifying which API is being requested. Valid strings are: "oligo_design", "sequence_complexity", "sequence_design"
+**api**: A required string specifying which API is being requested. Valid strings are: "oligo_design", "sequence_complexity", "sequence_design"
 
 #### Required Parameters
-**required_parameters**: A required JSON object containing all three of the following entries:
+**required_parameters**: A required JSON object containing the following entries:
 
 ###### Sequences
 **sequences**: A list of JSON objects of sequence records that include the following:
@@ -466,7 +466,7 @@ The minimum number of basepairs allowed for any given overlap between 3’ and 5
 5. **maximum_overlap**: Integer, default 25
 The maximum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
 6. **minimum_zscore_cutoff**: Float, default -4.0
-This is used to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
+This is used to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in **less** overall complex regions identified. 
 7. **temp**: Float, default 60.0
 This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
 
@@ -488,7 +488,7 @@ If the complexity parameters are invalid or result in an invalid complexity, ver
 - Same advantages as above, but additionally can run on a network isolated computer
 
 
-### Technical Examples
+### API Request Examples
 
 Below is an example of a command line to POST a job request to the Sequence Complexity API.
 
@@ -540,7 +540,7 @@ curl -0 -X POST "https://homologypath.com/router/" \
 '{"api": "sequence_complexity", "job_id":"f0e2474a-8e91-47c1-816a-647f6f5ef774"}'
 ```
 
-Depending on how large the request was, this polling request may need to be done periodically until it's completed the calculation. Once the complexity calculation is complete, there will be a `Finished` field and the response should look similar to the following:
+Depending on how large the request was, this polling request may need to be done periodically until the calculation is complete. Once the complexity calculation is complete, there will be a `Finished` field and the response should look similar to the following:
 
 
 ```
