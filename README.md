@@ -47,15 +47,27 @@ The temperature (in degrees Celcius) at wich PCA is performed. This is only used
 #### Optional Parameters
 An optional JSON object containing any of the following:
 
-1. **Recycle Oligos**: Boolean, default True.
-Perform oligo recycling across the entire set of sequences provided in 
-Sequence Records.
-2. **Source Plate Size**: Integer, default 96.
+1. **Design Type**: String, default "maximize_recycling".
+Specifies the type of Oligo Design to perform. Valid types are: "maximize_recycling", "minimize_complexity", "gapped_design", "standard"
+2. **Design Name**: String, default "design01"
+User specified name for the design. The files emailed will have this name.
+3. **Recycle Oligos**: Boolean, default True.
+Perform oligo recycling across the entire set of sequences provided in Sequence Records.
+4. **Source Plate Size**: Integer, default 96.
 Number of wells of the oligo plate to order from the oligo manufacturer. Currently must be either 96 or 384. 
-3. **Destination Plate Size**: Integer, default 96.
+5. **Destination Plate Size**: Integer, default 96.
 Number of wells of the pooling plate. Currently must be either 96 or 384. 
-4. **Row Major**: Boolean, default True
+6. **Row Major**: Boolean, default True
 Provide the list of oligos in row first (A1, A2, A3, etc) order if True, otherwise provide this list in column first order (A1, B1, C1, etc).
+7. **Emails**: String, default is empty
+A comma separated list of emails to which to send the design files.
+8. **Partition Identity**: Float, default 0.95
+Used only for Design Type = "maximize_recycling". This is used to help inform the Oligo Design about how best to partition the sequences for maximizing the recycling. Tuning this parameter will affect the overall recycle efficiency. This should be a number between 0.0 and 1.0.
+9. **Minimum Z-score Cutoff**: Float, default -4.0
+Used only for Design Type = "minimize_complexity". This is used to help inform the Oligo Design how to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
+10. **Temp**: Float, default 60.0
+Used only for Design Type = "minimize_complexity". This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
+
 
 ### Output
 An object that contains the oligo and primer designs, plate maps, and visualization  in JSON. See below for an example of the JSON output.
@@ -134,17 +146,17 @@ A successful response will be a JSON object containing the `job_id` of the reque
 {"job_id":"b2816ba3-3390-437b-a37c-03fc1238db94"}
 ```
 
-This `job_id` can be used to POST a request to the API for information about the job, for example:
+This `job_id` can be used to POST a polling request to the API for information about the job, for example:
 
 ```
-curl -0 -X GET "https://homologypath.com/router/" \
+curl -0 -X POST "https://homologypath.com/router/" \
 -H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
 -H "Content-Type: application/json" \
 -d \
 '{"api": "oligo_design", "job_id":"b2816ba3-3390-437b-a37c-03fc1238db94"}'
 ```
 
-Once the design is complete, there will be a `Finished` field in the response and should look similar to the following:
+Depending on how large the request was, this polling request may need to be done periodically until it's completed the calculation. Once the design is complete, there will be a `Finished` field and the response should look similar to the following:
 
 ```
 {
