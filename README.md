@@ -457,7 +457,7 @@ This is used to identify outlier oligo pairings when estimating the ΔG for each
 This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
 
 ### Output
-An object that contains ___ in JSON. See below for an example of the JSON output.
+An object that contains complexity results in JSON format. See below for an example of the JSON output.
 
 ### Error Handling
 If the complexity parameters are invalid or result in an invalid complexity, verbose errors are returned for resolution.
