@@ -527,10 +527,12 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(72:123)":95.3
+                  "position":"(72:123)",
+                  "value":95.3
                },
                {
-                  "(172:223)":95.3
+                  "position":"(172:223)",
+                  "value":95.3
                }
             ]
          },
@@ -540,10 +542,12 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(7:22)":28.8
+                  "position":"(7:22)",
+                  "value":28.8
                },
                {
-                  "(454:469)":28.8
+                  "position":"(454:469)",
+                  "value":28.8
                }
             ]
          },
@@ -553,10 +557,12 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(269:280)":15.9
+                  "position":"(269:280)",
+                  "value":15.9
                },
                {
-                  "(448:459)":15.9
+                  "position":"(448:459)",
+                  "value":15.9
                }
             ]
          },
@@ -566,10 +572,12 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(259:298)":78
+                  "position":"(259:298)",
+                  "value":78
                },
                {
-                  "(298:337)":78
+                  "position":"(298:337)",
+                  "value":78
                }
             ]
          },
@@ -579,7 +587,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(24:64)":0.29749999999999993
+                  "position":"(24:64)",
+                  "value":0.29749999999999993
                }
             ]
          },
@@ -589,10 +598,12 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(68:108)":0.7024999999999999
+                  "position":"(68:108)",
+                  "value":0.7024999999999999
                },
                {
-                  "(158:198)":0.7074999999999998
+                  "position":"(158:198)",
+                  "value":0.7074999999999998
                }
             ]
          },
@@ -602,7 +613,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":0,
             "details":[
                {
-                  "(0:478)":0.5376569037656904
+                  "position":"(0:478)",
+                  "value":0.5376569037656904
                }
             ]
          },
@@ -612,7 +624,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(279:310)",
+                  "positionA":"(279:310)",
+                  "positionB":"(279:310)",
                   "deltaG":-33.22,
                   "zScore":-5.9387986158125585
                }
@@ -624,7 +637,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(0:31)",
+                  "positionA":"(0:31)",
+                  "positionB":"(449:478)",
                   "deltaG":-21.75,
                   "zScore":-5.49545251642264
                }
@@ -636,7 +650,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(62:93)",
+                  "positionA":"(62:93)",
+                  "positionB":"(170:201)",
                   "deltaG":-37.16,
                   "zScore":-10.671630477489774
                }
@@ -648,7 +663,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(77:108)",
+                  "positionA":"(77:108)",
+                  "positionB":"(170:201)",
                   "deltaG":-17.39,
                   "zScore":-4.030940127697609
                }
@@ -660,7 +676,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(77:108)",
+                  "positionA":"(77:108)",
+                  "positionB":"(186:217)",
                   "deltaG":-42.53,
                   "zScore":-12.47539917644698
                }
@@ -672,7 +689,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(93:124)",
+                  "positionA":"(93:124)",
+                  "positionB":"(201:232)",
                   "deltaG":-35.1,
                   "zScore":-9.979681963550885
                }
@@ -684,7 +702,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(263:294)",
+                  "positionA":"(263:294)",
+                  "positionB":"(294:325)",
                   "deltaG":-31.41,
                   "zScore":-8.740220790524425
                }
@@ -698,10 +717,12 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(97:148)":95.3
+                  "position":"(97:148)",
+                  "value":95.3
                },
                {
-                  "(197:248)":95.3
+                  "position":"(197:248)",
+                  "value":95.3
                }
             ]
          },
@@ -711,16 +732,20 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(8:21)":25.1
+                  "position":"(8:21)",
+                  "value":25.1
                },
                {
-                  "(10:18)":15.9
+                  "position":"(10:18)",
+                  "value":15.9
                },
                {
-                  "(36:49)":25.1
+                  "position":"(36:49)",
+                  "value":25.1
                },
                {
-                  "(471:479)":15.9
+                  "position":"(471:479)",
+                  "value":15.9
                }
             ]
          },
@@ -730,10 +755,12 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(284:323)":78
+                  "position":"(284:323)",
+                  "value":78
                },
                {
-                  "(323:362)":78
+                  "position":"(323:362)",
+                  "value":78
                }
             ]
          },
@@ -743,13 +770,16 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(1:41)":0.7049999999999998
+                  "position":"(1:41)",
+                  "value":0.7049999999999998
                },
                {
-                  "(93:133)":0.7024999999999999
+                  "position":"(93:133)",
+                  "value":0.7024999999999999
                },
                {
-                  "(183:223)":0.7074999999999998
+                  "position":"(183:223)",
+                  "value":0.7074999999999998
                }
             ]
          },
@@ -759,7 +789,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "(47:87)":0.2975
+                  "position":"(47:87)",
+                  "value":0.2975
                }
             ]
          },
@@ -769,7 +800,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":0,
             "details":[
                {
-                  "(0:484)":0.5413223140495868
+                  "position":"(0:484)",
+                  "value":0.5413223140495868
                }
             ]
          },
@@ -779,7 +811,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(310:341)",
+                  "positionA":"(310:341)",
+                  "positionB":"(310:341)",
                   "deltaG":-36.36,
                   "zScore":-6.5054610749961395
                }
@@ -791,7 +824,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(0:31)",
+                  "positionA":"(0:31)",
+                  "positionB":"(201:232)",
                   "deltaG":-18.79,
                   "zScore":-4.333570082517523
                }
@@ -803,7 +837,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(93:124)",
+                  "positionA":"(93:124)",
+                  "positionB":"(201:232)",
                   "deltaG":-42.91,
                   "zScore":-12.234944848030633
                }
@@ -815,7 +850,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(108:139)",
+                  "positionA":"(108:139)",
+                  "positionB":"(186:217)",
                   "deltaG":-23.14,
                   "zScore":-5.758569262865037
                }
@@ -827,7 +863,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(108:139)",
+                  "positionA":"(108:139)",
+                  "positionB":"(217:248)",
                   "deltaG":-35.92,
                   "zScore":-9.945118578920491
                }
@@ -839,7 +876,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(124:155)",
+                  "positionA":"(124:155)",
+                  "positionB":"(232:263)",
                   "deltaG":-22.62,
                   "zScore":-5.588224533260277
                }
@@ -851,7 +889,8 @@ Depending on how large the request was, this polling request may need to be done
             "value":1,
             "details":[
                {
-                  "position":"(294:325)",
+                  "positionA":"(294:325)",
+                  "positionB":"(325:356)",
                   "deltaG":-35.19,
                   "zScore":-9.705980785436884
                }
@@ -859,7 +898,7 @@ Depending on how large the request was, this polling request may need to be done
          }
       ]
    },
-   "Complexity URL":"https://storage.googleapis.com/0446c3ad-f0af-481f-9c9f-68ccdf8370cc/SequenceComplexitys/job_97d71458-21d2-4bab-b3bd-816bf078bd41.zip?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=ninthbio%40ninthbio.iam.gserviceaccount.com%2F20221101%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20221101T201031Z&X-Goog-Expires=604800&X-Goog-SignedHeaders=host&X-Goog-Signature=72e3b5d5b4fc204988f3c30835c291d58cbf66523a5b653415d6f506fa05c339f1b51462d7d4ef2f99142f23b5cd81474d951b622de42e6645af60434f47f32a73054c72d25ec31e2e3626511823bcf5cd0d46176d0099f38bd401b5f79ba0f0fa819a31eb425ac563ceef8a3dd47be5affd23fa27be506d5587dead34c44be2112f96c6110c960587cb02d19f403c7a900e7ef0b6293f79f450abe89f447de18224acb38935bdfa93107ff62aeadb5cf0ef89f3e52103dd2bfd7d73741c10f0376d8a7d951cb2a4fd2198976ce72d120dead136ce24a9005a800b20f7b99e79ba3527f17067a695d41662345d5f57ac8c4751ee0af7aaf89efdcd6233f7f763",
+   "Complexity URL":"https://storage.googleapis.com/0446c3ad-f0af-481f-9c9f-68ccdf8370cc/SequenceComplexitys/job_b0739602-a964-40f8-8795-68d946e24d09.zip?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=ninthbio%40ninthbio.iam.gserviceaccount.com%2F20221103%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20221103T021444Z&X-Goog-Expires=604800&X-Goog-SignedHeaders=host&X-Goog-Signature=1a005ac6559e1871a7ece5e429a7a2e0a49afd5b1c62a96d94dc9c6b0fdca47f0d87868d3a1c2fd30347ae271dbc6ef04807db30c1fde9d45b4806c5776c148c9a264907c5978cc487ba47321fc4ad23c08394bc777685e696238e2c787b5cdd3371cbc5ac05a7a56ad609705858b52ecacc89c170f3a1d25c9bf2761ea6801f9457a3a7f520ef6332fccd8bae9489bd025dbb83b30f46ec1054e30962153a4b1f0994ba0ac691104e0b676caabfeac2a29391c43b9084604c3b8b54760df41d708bba0e6ce1e19337877e30051923646a7714cf4c85bad6e6fba13ab7e18671aa673a2db7b3583a96b7585be4c94f8c592a373020f02af59c6607347fc35cc3",
    "Complexity Info":"Sequence Complexity for example1:<br>Complexity Code 201:<br>interspersed repeat at (72:123) - (172:223)<br>Repeat Info:<br>(72:123):&emsp;95.3<br>(172:223):&emsp;95.3<p></p>Complexity Code 201:<br>interspersed repeat at (7:22) - (454:469)<br>Repeat Info:<br>(7:22):&emsp;28.8<br>(454:469):&emsp;28.8<p></p>Complexity Code 201:<br>interspersed repeat at (269:280) - (448:459)<br>Repeat Info:<br>(269:280):&emsp;15.9<br>(448:459):&emsp;15.9<p></p>Complexity Code 202:<br>palindromic repeat at (259:298) - (298:337)<br>Repeat Info:<br>(259:298):&emsp;78<br>(298:337):&emsp;78<p></p>Complexity Code 102:<br>Low GC at (24:64)<br>GC Info:<br>(24:64):&emsp;29.75% GC<p></p>Complexity Code 101:<br>High GC at (68:108), High GC at (158:198)<br>GC Info:<br>(68:108):&emsp;70.25% GC<br>(158:198):&emsp;70.75% GC<p></p>Complexity Code 103:<br>Total sequence GC 53.77%<br>GC Info:<br>(0:478):&emsp;53.77% GC<p></p>Complexity Code 403:<br>Self oligo pair at (279:310) - (279:310) is an outlier.<br>Free Energy Info:<br>deltaG: -33.22 kcal/mol<br>Z-score: -5.94<p></p>Complexity Code 402:<br>Disjoint oligo pair at (0:31) - (449:478) is an outlier.<br>Free Energy Info:<br>deltaG: -21.75 kcal/mol<br>Z-score: -5.50<p></p>Complexity Code 402:<br>Disjoint oligo pair at (62:93) - (170:201) is an outlier.<br>Free Energy Info:<br>deltaG: -37.16 kcal/mol<br>Z-score: -10.67<p></p>Complexity Code 402:<br>Disjoint oligo pair at (77:108) - (170:201) is an outlier.<br>Free Energy Info:<br>deltaG: -17.39 kcal/mol<br>Z-score: -4.03<p></p>Complexity Code 402:<br>Disjoint oligo pair at (77:108) - (186:217) is an outlier.<br>Free Energy Info:<br>deltaG: -42.53 kcal/mol<br>Z-score: -12.48<p></p>Complexity Code 402:<br>Disjoint oligo pair at (93:124) - (201:232) is an outlier.<br>Free Energy Info:<br>deltaG: -35.10 kcal/mol<br>Z-score: -9.98<p></p>Complexity Code 402:<br>Disjoint oligo pair at (263:294) - (294:325) is an outlier.<br>Free Energy Info:<br>deltaG: -31.41 kcal/mol<br>Z-score: -8.74<p></p>Sequence Complexity for example2:<br>Complexity Code 201:<br>interspersed repeat at (97:148) - (197:248)<br>Repeat Info:<br>(97:148):&emsp;95.3<br>(197:248):&emsp;95.3<p></p>Complexity Code 201:<br>interspersed repeat at (8:21) - (10:18) - (36:49) - (471:479)<br>Repeat Info:<br>(8:21):&emsp;25.1<br>(10:18):&emsp;15.9<br>(36:49):&emsp;25.1<br>(471:479):&emsp;15.9<p></p>Complexity Code 202:<br>palindromic repeat at (284:323) - (323:362)<br>Repeat Info:<br>(284:323):&emsp;78<br>(323:362):&emsp;78<p></p>Complexity Code 101:<br>High GC at (1:41), High GC at (93:133), High GC at (183:223)<br>GC Info:<br>(1:41):&emsp;70.50% GC<br>(93:133):&emsp;70.25% GC<br>(183:223):&emsp;70.75% GC<p></p>Complexity Code 102:<br>Low GC at (47:87)<br>GC Info:<br>(47:87):&emsp;29.75% GC<p></p>Complexity Code 103:<br>Total sequence GC 54.13%<br>GC Info:<br>(0:484):&emsp;54.13% GC<p></p>Complexity Code 403:<br>Self oligo pair at (310:341) - (310:341) is an outlier.<br>Free Energy Info:<br>deltaG: -36.36 kcal/mol<br>Z-score: -6.51<p></p>Complexity Code 402:<br>Disjoint oligo pair at (0:31) - (201:232) is an outlier.<br>Free Energy Info:<br>deltaG: -18.79 kcal/mol<br>Z-score: -4.33<p></p>Complexity Code 402:<br>Disjoint oligo pair at (93:124) - (201:232) is an outlier.<br>Free Energy Info:<br>deltaG: -42.91 kcal/mol<br>Z-score: -12.23<p></p>Complexity Code 402:<br>Disjoint oligo pair at (108:139) - (186:217) is an outlier.<br>Free Energy Info:<br>deltaG: -23.14 kcal/mol<br>Z-score: -5.76<p></p>Complexity Code 402:<br>Disjoint oligo pair at (108:139) - (217:248) is an outlier.<br>Free Energy Info:<br>deltaG: -35.92 kcal/mol<br>Z-score: -9.95<p></p>Complexity Code 402:<br>Disjoint oligo pair at (124:155) - (232:263) is an outlier.<br>Free Energy Info:<br>deltaG: -22.62 kcal/mol<br>Z-score: -5.59<p></p>Complexity Code 402:<br>Disjoint oligo pair at (294:325) - (325:356) is an outlier.<br>Free Energy Info:<br>deltaG: -35.19 kcal/mol<br>Z-score: -9.71<p></p>",
    "Complexity Errors":[
       
