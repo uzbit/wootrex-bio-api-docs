@@ -926,7 +926,7 @@ import requests
 import time
 
 url = "https://homologypath.com/router/"
-token = "your_token"
+token = "YOUR_API_TOKEN_HERE"
 data = {
   "api": "sequence_complexity",
   "required_parameters": {
@@ -961,7 +961,7 @@ response = requests.post(
 data = response.json()
 print("Response:", data) # At this point "job_id" field means the worker is booted and computing.
 
-time.sleep(10) #Depending on how big the request was, should periodically check (in while loop with time.sleep)
+time.sleep(10) # Depending on how big the request was, should periodically check (in while loop with time.sleep)
 
 # POST a request to get the job results.
 data["api"] = "sequence_complexity"
