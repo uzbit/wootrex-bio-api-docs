@@ -928,42 +928,48 @@ import time
 url = "https://homologypath.com/router/"
 token = "YOUR_API_TOKEN_HERE"
 data = {
-  "api": "sequence_complexity",
-  "required_parameters": {
-    "sequences": [
-      {
-        "sequence_name": "example1",
-        "sequence": "ATGGGGACCGGATCCGGATCGGGTTTCATAACTATACTCGTAAGGATCATGTTATTGATTTCTTCAAAGGTTACTGTGGGTCTCCGGGCCCCCCCGTCCACCCAGACCGACCGAACTCTCCCGTTTAGGACCCTAGTAAGTCATCATTGGTATATGAATGCGACCCCGAAGAACTGTGGGTCTCCGGGCCCCCCCGTCCACCCAGACCGACCGAACTCTCCCGCAATTCTATAAGAATGCACACTGCATCGATACATAAAACGTCTCGATCGCGCCGGGAAAGGTACGCACGCGGTATATACCGCGTGCGTACCTTTCCCGGCTCCTTCCAGAGGTATGTGGCTGCGTGGTCAAAAGTGCGGCATTCGTATTTGCTCCTCGTGTTTACTCTCACAAACTTGACCTGGAGATCAAGGAGATGCTTCTTGTGGAACTGGACAACGCAATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA"
-      },
-      {
-        "sequence_name": "example2",
-        "sequence": "ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCTTTCATAACTATACTCGTAAGGATCATGTTATTGATTTCTTCAAAGGTTACTGTGGGTCTCCGGGCCCCCCCGTCCACCCAGACCGACCGAACTCTCCCGTTTAGGACCCTAGTAAGTCATCATTGGTATATGAATGCGACCCCGAAGAACTGTGGGTCTCCGGGCCCCCCCGTCCACCCAGACCGACCGAACTCTCCCGCAATTCTATAAGAATGCACACTGCATCGATACATAAAACGTCTCGATCGCGCCGGGAAAGGTACGCACGCGGTATATACCGCGTGCGTACCTTTCCCGGCTCCTTCCAGAGGTATGTGGCTGCGTGGTCAAAAGTGCGGCATTCGTATTTGCTCCTCGTGTTTACTCTCACAAACTTGACCTGGAGATCAAGGAGATGCTTCTTGTGGAACTGGACAACGCAGTCCGGATCGCGAA"
-      }
-    ],
-    "sequence_complexity_parameters": {
-      "minimum_length": "25",
-      "target_length": "30",
-      "maximum_length": "40",
-      "minimum_overlap": "15",
-      "maximum_overlap": "25",
-      "minimum_zscore_cutoff": "-4.0",
-      "temp": "60"
-    }
-  }
+    "api": "sequence_complexity",
+    "required_parameters": {
+        "sequences": [
+            {
+                "sequence_name": "example1",
+                "sequence": "ATGGGGACCGGATCCGGATCGGGTTTCATAACTATACTCGTAAGGATCATGTTATTGATTTCTTCAAAGGTTACTGTGGGTCTCCGGGCCCCCCCGTCCACCCAGACCGACCGAACTCTCCCGTTTAGGACCCTAGTAAGTCATCATTGGTATATGAATGCGACCCCGAAGAACTGTGGGTCTCCGGGCCCCCCCGTCCACCCAGACCGACCGAACTCTCCCGCAATTCTATAAGAATGCACACTGCATCGATACATAAAACGTCTCGATCGCGCCGGGAAAGGTACGCACGCGGTATATACCGCGTGCGTACCTTTCCCGGCTCCTTCCAGAGGTATGTGGCTGCGTGGTCAAAAGTGCGGCATTCGTATTTGCTCCTCGTGTTTACTCTCACAAACTTGACCTGGAGATCAAGGAGATGCTTCTTGTGGAACTGGACAACGCAATCTCGCGCCCGGATCCGGATCGGAAAGCGAAA",
+            },
+            {
+                "sequence_name": "example2",
+                "sequence": "ATGCCGGACGGATCCGGATCTCGCGGGATCTCGCACCGGATCCGGATCTTTCATAACTATACTCGTAAGGATCATGTTATTGATTTCTTCAAAGGTTACTGTGGGTCTCCGGGCCCCCCCGTCCACCCAGACCGACCGAACTCTCCCGTTTAGGACCCTAGTAAGTCATCATTGGTATATGAATGCGACCCCGAAGAACTGTGGGTCTCCGGGCCCCCCCGTCCACCCAGACCGACCGAACTCTCCCGCAATTCTATAAGAATGCACACTGCATCGATACATAAAACGTCTCGATCGCGCCGGGAAAGGTACGCACGCGGTATATACCGCGTGCGTACCTTTCCCGGCTCCTTCCAGAGGTATGTGGCTGCGTGGTCAAAAGTGCGGCATTCGTATTTGCTCCTCGTGTTTACTCTCACAAACTTGACCTGGAGATCAAGGAGATGCTTCTTGTGGAACTGGACAACGCAGTCCGGATCGCGAA",
+            },
+        ],
+        "sequence_complexity_parameters": {
+            "minimum_length": "25",
+            "target_length": "30",
+            "maximum_length": "40",
+            "minimum_overlap": "15",
+            "maximum_overlap": "25",
+            "minimum_zscore_cutoff": "-4.0",
+            "temp": "60",
+        },
+    },
 }
-print("Posting request...")
-# POST a request with job info to the API.
+
+# Post a request with job info to the API.
+print("Posting request (worker starting may take some time)...")
 response = requests.post(
     url,
     headers={"Authorization": f"Token {token}"},
     json=data,
 )
 data = response.json()
-print("Response:", data) # At this point "job_id" field means the worker is booted and computing.
 
-time.sleep(10) # Depending on how big the request was, should periodically check (in while loop with time.sleep)
+# At this point "job_id" field means the worker is booted and computing.
+print("Response:", data)
 
-# POST a request to get the job results.
+# Depending on how big the request was, you should periodically poll the API with "job_id".
+# This example just sleeps for 10 seconds, which is enough time to finish the calculations.
+time.sleep(10)
+
+# Poll the API request to get the job results.
+print(f"Checking {data} for results...")
 data["api"] = "sequence_complexity"
 response = requests.post(
     url,
@@ -971,5 +977,11 @@ response = requests.post(
     json=data,
 )
 response = response.json()
-print("Results:", response)
+
+# A polling response with successful execution will have a "Finished" field with the "job_id".
+if "Finished" in response:
+    print(f"Finished {data} with:\n", response)
+else:
+    print(f"Not finished, make another request with better parameters!")
+
 ```
