@@ -968,7 +968,7 @@ print("Response:", data)
 # This example just sleeps for 10 seconds, which is enough time to finish the calculations.
 time.sleep(10)
 
-# Poll the API request to get the job results.
+# Poll the API to get the job results.
 print(f"Checking {data} for results...")
 data["api"] = "sequence_complexity"
 response = requests.post(
