@@ -85,7 +85,7 @@ Below is an example of a command line to POST a job request to the Oligo Design 
 
 ```
 curl -0 -X POST "https://homologypath.com/router/" \
--H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
+-H "Authorization: Token YOUR_API_TOKEN_HERE" \
 -H "Content-Type: application/json" \
 -d \
 '
@@ -141,7 +141,7 @@ This `job_id` can be used to POST a polling request to the API for information a
 
 ```
 curl -0 -X POST "https://homologypath.com/router/" \
--H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
+-H "Authorization: Token YOUR_API_TOKEN_HERE" \
 -H "Content-Type: application/json" \
 -d \
 '{"api": "oligo_design", "job_id":"b2816ba3-3390-437b-a37c-03fc1238db94"}'
@@ -468,7 +468,7 @@ Below is an example of a command line to POST a job request to the Sequence Comp
 
 ```
 curl -0 -X POST "https://homologypath.com/router/" \
--H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
+-H "Authorization: Token YOUR_API_TOKEN_HERE" \
 -H "Content-Type: application/json" \
 -d \
 '
@@ -508,7 +508,7 @@ This `job_id` can be used to POST a polling request to the API for information a
 
 ```
 curl -0 -X POST "https://homologypath.com/router/" \
--H "Authorization: Token <YOUR_API_TOKEN_HERE>" \
+-H "Authorization: Token YOUR_API_TOKEN_HERE" \
 -H "Content-Type: application/json" \
 -d \
 '{"api": "sequence_complexity", "job_id":"b2816ba3-3390-437b-a37c-03fc1238db94"}'
