@@ -422,7 +422,8 @@ Depending on how large the request was, this polling request may need to be done
 ## Sequence Complexity
 The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos for a given sequence. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (dark green), high (red) and low (blue) GC regions, and a large palindromic/hairpin region (yellow). The lighter green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
 
-![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/198150261-7c6844a1-d53e-4712-85ef-1029701144a9.png)
+![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/202378040-a9958364-e2fa-4be1-8a19-0998d313301e.png)
+9.png)
 
 ### Parameters
 The API accepts a JSON object containing the following:
