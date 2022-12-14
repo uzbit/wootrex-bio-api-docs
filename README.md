@@ -420,9 +420,9 @@ Depending on how large the request was, this polling request may need to be done
 
 
 ## Sequence Complexity
-The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos for a given sequence. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (dark green), high (red) and low (blue) GC regions, and a large palindromic/hairpin region (yellow). The lighter green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
+The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos for a given sequence. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (light green), high (light red) and low (light blue) GC regions, and a large palindromic/hairpin region (yellow). The lighter green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
 
-![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/202378040-a9958364-e2fa-4be1-8a19-0998d313301e.png)
+![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/207479837-17bea843-9a36-4dbd-905b-79120fe5bf03.png)
 
 ### Parameters
 The API accepts a JSON object containing the following:
@@ -458,6 +458,35 @@ This is used in the ΔG calculations and should correspond to the target PCA tem
 
 ### Output
 An object that contains complexity results in JSON format. See below for an example of the JSON output.
+
+
+#### Complexity Result Definitions
+A complexity result will be one of the following types:
+
+##### High GC Region (Code 101)
+A high GC region is identified as non-overlapping 40bp windows of the sequence with at least 70% GC content. The "value" field returned by the API is the ratio of GC in the 40bp window. Represented in light red in the result image.
+
+##### Low GC Region (Code 102)
+A low GC region is identified as non-overlapping 40bp windows of the sequence with at most 30% GC content. The "value" field returned by the API is the ratio of GC in the 40bp window. Represented in light blue in the result image.
+
+##### Interspersed Repeat (Code 201)
+An interspersed repeat is identified as at least two non-contiguous parts of the sequence of at least 7bp in length. Both forward and reverse strands are compared. The "value" field returned by the API is a BLASTn bitscore for each pair. Represented in dark green in the result image.
+
+##### Palindrome Repeat (Code 202)
+A palindrome repeat is identified as a contiguous region that would likely form a hairpin. These must be at least 10bp and of at least 85% identity. The "value" field returned by the API is a score that is a combination of length and identity of the palindrome. Represented in dark green in the result image. Represented in yellow in the result image. 
+
+##### ΔG - Overlapping Oligo Pairs (Code 401)
+Two oligos designed to overlap but have a higher (more positive) the other oligos do that are intended to overlap by at least abs(Minimum Z-Score Cutoff). Represented in darker blue in the result image. 
+
+##### ΔG - Self Oligo Pairs (Code 402)
+An oligo that has higher affinity to itself than the other oligos do to themselves by at least Minimum Z-Score Cutoff. Represented in darker red in the result image. 
+
+##### ΔG - Disjoint Oligo Pairs (Code 403)
+An oligo pair that have higher (more negative ΔG) affinity to each other than other oligos do by at least Minimum Z-Score Cutoff. Represented in darker green in the result image. 
+
+##### ΔG - Z-Score Definition
+The Z-score is calculated based on a simulation of a distribution of designed sequences of identical design and similar GC content.
+
 
 ### Error Handling
 If the complexity parameters are invalid or result in an invalid complexity, verbose errors are returned for resolution.
