@@ -68,9 +68,9 @@ Used only for Design Type = "maximize_recycling". This is used to help inform th
 Used only for Design Type = "minimize_complexity". This is used to help inform the Oligo Design how to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
     - **temp**: Float, default 60.0
 Used only for Design Type = "minimize_complexity". This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
-    - **optimize_overlap_tm**: Boolean, default False (NOT IMPLEMENTED AT API LEVEL YET)
+    - **optimize_overlap_tm**: Boolean, default False
 Make oligo overlaps TM optimized to **overlap_tm_target_temp**
-    - **overlap_tm_target_temp**: Float, default 60.0 (NOT IMPLEMENTED AT API LEVEL YET)
+    - **overlap_tm_target_temp**: Float, default 60.0
 This should correspond to the target PCA temperature (degrees Celsius). 
 
 ### Output
