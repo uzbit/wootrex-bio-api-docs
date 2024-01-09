@@ -23,6 +23,8 @@ The API accepts a JSON object containing the following:
 ###### Oligo Design Parameters
 - **oligo_design_parameters**: A JSON object containing the following:
 
+    - **design_type**: String, default "maximize_recycling".
+Specifies the type of Oligo Design to perform. Valid types are: "maximize_recycling", "minimize_complexity", "gapped_design", "naive_design"
     - **minimum_length**: Integer, default 30
 The minimum size in base pairs allowed for any oligo in the design. 
     - **target_length**: Integer, default 50 
@@ -48,8 +50,6 @@ The temperature (in degrees Celsius) at wich PCA is performed. This is only used
 #### Optional Parameters
 - **optional_parameters**: An optional JSON object containing any of the following:
 
-    - **design_type**: String, default "maximize_recycling".
-Specifies the type of Oligo Design to perform. Valid types are: "maximize_recycling", "minimize_complexity", "gapped_design", "standard"
     - **design_name**: String, default "design01"
 User specified name for the design. The files emailed will have this name.
     - **recycle_oligos**: Boolean, default True.
@@ -71,7 +71,15 @@ Used only for Design Type = "minimize_complexity". This is used in the ΔG calcu
     - **optimize_overlap_tm**: Boolean, default False
 Make oligo overlaps TM optimized to **overlap_tm_target_temp**
     - **overlap_tm_target_temp**: Float, default 60.0
-This should correspond to the target PCA temperature (degrees Celsius). 
+This should correspond to the target PCA temperature (degrees Celsius).
+    - **compute_complexity_for_design**: bool, default False
+Also compute the complexity for this design. The response will then contain the "Complexity" field as described in the Sequence Complexity API below.
+    - **custom_cuts**: JSON, default {}
+Provided that a valid JSON object containing sequence name to custom cut positions list, designs will be made to ensure that oligos will end or start (depending which oligo end/start is closest) at the cut positions given. For example, given: `{
+        'seq1': [50, 900, 1040], 
+        'seq2': [150, 2005]
+        }`
+Sequence 'seq1' will have oligos that start/end at positions 50, 900, 1040; and 'seq2' will have oligos that start/end at 150, 2005. This is available only for design_type = "minimize_complexity" or "gapped_design".
 
 ### Output
 An object that contains the oligo and primer designs, plate maps, and visualization  in JSON. See below for an example of the JSON output.
@@ -105,6 +113,7 @@ curl -0 -X POST "https://homologypath.com/router/" \
           }
        ],
        "oligo_design_parameters":{
+          "design_type":"maximize_recycling",
           "minimum_length":"30",
           "target_length":"50",
           "maximum_length":"60",
@@ -118,14 +127,15 @@ curl -0 -X POST "https://homologypath.com/router/" \
        }
     },
     "optional_parameters":{
-       "design_type":"maximize_recycling",
        "design_name":"design01",
        "source_plate_size":"384",
        "destination_plate_size":"384",
        "emails":"your@email.com",
        "row_major":"true",
        "recycle_oligos":"true",
-       "partition_identity":"0.95"
+       "partition_identity":"0.95",
+       "compute_complexity_for_design": false,
+       "custom_cuts": {'example1': [25]}, 
     }
  }'
 
