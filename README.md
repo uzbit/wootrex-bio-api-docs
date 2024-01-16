@@ -430,9 +430,9 @@ Depending on how large the request was, this polling request may need to be done
 
 
 ## Sequence Complexity
-The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos for a given sequence. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (light green), high (light red) and low (light blue) GC regions, and a large palindromic/hairpin region (yellow). The lighter green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
+The Sequence Complexity bioinformatics software package and API provide a simple and intuitive method to analyze DNA sequences for regions that may make a given sequence more difficult to synthesize. This package looks for repeat regions of various sorts, high and low GC content regions, and most importantly performs a simulated analysis of a given oligo design based on the Gibbs Free Energy (ΔG) of the pool of oligos for a given sequence. An example output from the Sequence Complexity package can be seen below. The sequence shown has two large interspersed repeats (light green), high (light red) and low (light blue) GC regions, and a large palindromic/hairpin region (yellow). Tandem repeats (including homolopymers) are shown in pink. The darker green segments (disjoint oligo pairs) at the bottom represent oligos in a design that have an abnormally high affinity (more negative ΔG), yet were not intended to anneal. This would likely result in truncated products during assembly. There is also a dark red segment (self oligo pairs) in the region of the hairpin. This oligo is likely to fold on itself and hence not be available for the assembly, resulting again in truncated product. Using this information, and the Oligo Design tool, one should be able to create a design that minimizes these synthesis issues. 
 
-![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/207479837-17bea843-9a36-4dbd-905b-79120fe5bf03.png)
+![Sequence Complexity Example](https://github.com/uzbit/wootrex-bio-tutorial/assets/2830915/76ae9fbb-ff86-4037-b42a-cf1c06cf1bce)
 
 ### Parameters
 The API accepts a JSON object containing the following:
@@ -484,6 +484,9 @@ An interspersed repeat is identified as at least two non-contiguous parts of the
 
 ##### Palindrome Repeat (Code 202)
 A palindrome repeat is identified as a contiguous region that would likely form a hairpin. These must be at least 10bp and of at least 85% identity. The "value" field returned by the API is a score that is a combination of length and identity of the palindrome. Represented in dark green in the result image. Represented in yellow in the result image. 
+
+##### Tandem Repeat (Code 203)
+A tandem repeat is identified as a contiguous region has repeated number of k-mers of a specific type. For instance, a homopolymer is a special case of a tandem repeate where k=1. Another example of a tandem repeat is where the kmer "CGA" is repeated 4 times in a row: CGACGACGACGA. These types of repeats can cause issues in oligo synthesis. Tandem repeats are displayed in pink.
 
 ##### ΔG - Overlapping Oligo Pairs (Code 401)
 Two oligos designed to overlap but have a higher (more positive) the other oligos do that are intended to overlap by at least abs(Minimum Z-Score Cutoff). Represented in darker blue in the result image. 
