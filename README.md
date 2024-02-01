@@ -25,32 +25,32 @@ The API accepts a JSON object containing the following:
 
     - **design_type**: String, default "maximize_recycling".
 Specifies the type of Oligo Design to perform. Valid types are: "maximize_recycling", "minimize_complexity", "gapped_design", "naive_design"
-    - **minimum_length**: Integer, default 30
+    - **minimum_length**: Integer, default 30.
 The minimum size in base pairs allowed for any oligo in the design. 
-    - **target_length**: Integer, default 50 
+    - **target_length**: Integer, default 50.
 The target size in base pairs for an oligo to start with during design. 
-    - **maximum_length**: Integer, default 60 
+    - **maximum_length**: Integer, default 60. 
 The maximum size in base pairs allowed for any oligo in the design. 
-    - **minimum_overlap**: Integer, default 15
+    - **minimum_overlap**: Integer, default 15.
 The minimum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
-    - **maximum_overlap**: Integer, default 25
+    - **maximum_overlap**: Integer, default 25.
 The maximum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
 
 ###### Primer Design Parameters 
 - **primer_design_parameters**: A JSON object containing the following:
 
-    - **target_primer_length**: Integer, default 20
+    - **target_primer_length**: Integer, default 20.
 The minimum size in base pairs allowed for any oligo in the design. 
-    - **tm_optimize_primers**: Boolean, default True
+    - **tm_optimize_primers**: Boolean, default True.
 Wether or not to melting temperature (TM) optimize the amplification primers. 
-    - **target_primer_tm_temp**: Integer, default 60
+    - **target_primer_tm_temp**: Integer, default 60.
 The temperature (in degrees Celsius) at wich PCA is performed. This is only used if **tm_optimize_primers** is **True**
 
 
 #### Optional Parameters
 - **optional_parameters**: An optional JSON object containing any of the following:
 
-    - **design_name**: String, default "design01"
+    - **design_name**: String, default "design01".
 User specified name for the design. The files emailed will have this name.
     - **recycle_oligos**: Boolean, default True.
 Perform oligo recycling across the entire set of sequences provided in Sequence Records.
@@ -58,23 +58,23 @@ Perform oligo recycling across the entire set of sequences provided in Sequence 
 Number of wells of the oligo plate to order from the oligo manufacturer. Currently must be either 96 or 384. 
     - **destination_plate_size**: Integer, default 96.
 Number of wells of the pooling plate. Currently must be either 96 or 384. 
-    - **row_major**: Boolean, default True
+    - **row_major**: Boolean, default True.
 Provide the list of oligos in row first (A1, A2, A3, etc) order if True, otherwise provide this list in column first order (A1, B1, C1, etc).
-    - **emails**: String, default is empty
+    - **emails**: String, default is empty.
 A comma separated list of emails to which to send the design files.
-    - **partition_identity**: Float, default 0.95
+    - **partition_identity**: Float, default 0.95.
 Used only for Design Type = "maximize_recycling". This is used to help inform the Oligo Design about how best to partition the sequences for maximizing the recycling. Tuning this parameter will affect the overall recycle efficiency. This should be a number between 0.0 and 1.0.
-    - **min_zscore_cutoff**: Float, default -4.0
+    - **min_zscore_cutoff**: Float, default -4.0.
 Used only for Design Type = "minimize_complexity". This is used to help inform the Oligo Design how to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
-    - **temp**: Float, default 60.0
+    - **temp**: Float, default 60.0.
 Used only for Design Type = "minimize_complexity". This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
-    - **optimize_overlap_tm**: Boolean, default False
+    - **optimize_overlap_tm**: Boolean, default False.
 Make oligo overlaps TM optimized to **overlap_tm_target_temp**
-    - **overlap_tm_target_temp**: Float, default 60.0
+    - **overlap_tm_target_temp**: Float, default 60.0.
 This should correspond to the target PCA temperature (degrees Celsius).
-    - **compute_complexity_for_design**: bool, default False
+    - **compute_complexity_for_design**: bool, default False.
 Also compute the complexity for this design. The response will then contain the "Complexity" field as described in the Sequence Complexity API below.
-    - **custom_cuts**: JSON, default {}
+    - **custom_cuts**: JSON, default {}.
 Provided that a valid JSON object containing sequence name to custom cut positions list, designs will be made to ensure that oligos will end or start (depending which oligo end/start is closest) at the cut positions given. For example, given: `{
         'seq1': [50, 900, 1040], 
         'seq2': [150, 2005]
@@ -451,20 +451,22 @@ The API accepts a JSON object containing the following:
 
 ###### Sequence Complexity Parameters
 - **sequence_complexity_parameters**: A JSON object containing the following: 
-    - **minimum_length**: Integer, default 30
+    - **minimum_length**: Integer, default 30.
 The minimum size in base pairs allowed for any oligo in the design. 
-    - **target_length**: Integer, default 50 
+    - **target_length**: Integer, default 50.
 The target size in base pairs for an oligo to start with during design. 
-    - **maximum_length**: Integer, default 60 
+    - **maximum_length**: Integer, default 60. 
 The maximum size in base pairs allowed for any oligo in the design. 
-    - **minimum_overlap**: Integer, default 15
+    - **minimum_overlap**: Integer, default 15.
 The minimum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
-    - **maximum_overlap**: Integer, default 25
+    - **maximum_overlap**: Integer, default 25.
 The maximum number of basepairs allowed for any given overlap between 3’ and 5’ paired oligos.
-    - **minimum_zscore_cutoff**: Float, default -4.0
+    - **minimum_zscore_cutoff**: Float, default -4.0.
 This is used to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in **less** overall complex regions identified. 
-    - **temp**: Float, default 60.0
+    - **temp**: Float, default 60.0.
 This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
+    - **salt**: Float, default 1.021.
+This is used in the ΔG calculations and should correspond to the molar concentration of monovalent salt (e.g. Na/K) used in solution. 
 
 ### Output
 An object that contains complexity results in JSON format. See below for an example of the JSON output.
