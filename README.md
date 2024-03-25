@@ -67,11 +67,15 @@ Used only for Design Type = "maximize_recycling". This is used to help inform th
     - **min_zscore_cutoff**: Float, default -4.0.
 Used only for Design Type = "minimize_complexity". This is used to help inform the Oligo Design how to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
     - **temp**: Float, default 60.0.
-Used only for Design Type = "minimize_complexity". This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius). 
+Used only for Design Types "minimize_complexity" and "gapped_design". This is used in the ΔG calculations as well as the overlap TM optimizations and should correspond to the target PCA temperature (degrees Celsius).
+    - **salt**: Float, default 1.021.
+Used only for Design Types "minimize_complexity" and "gapped_design". This is used in the ΔG calculations as well as the overlap TM optimizations and should correspond to the monovalent salt molar concentration. Currently, this value is provided to the TM calculation for both K+ and Na+. See below for a generic response curve for salt affect on TM. ![saltconc_response](https://github.com/uzbit/wootrex-bio-api-docs/assets/2830915/298e1e93-ac72-452f-9201-532bee8b0d9b)
     - **optimize_overlap_tm**: Boolean, default False.
 Make oligo overlaps TM optimized to **overlap_tm_target_temp**
-    - **overlap_tm_target_temp**: Float, default 60.0.
+    - **optimize_overlap_tm_temp**: Float, default 60.0.
 This should correspond to the target PCA temperature (degrees Celsius).
+    - **optimize_overlap_tm_delta**: Float, default 5.0.
+This is the maximum difference from **optimize_overlap_tm** any overlap temp should be considered erroneous. This will cause error messages to be generated and affects the overall optimization as well.
     - **compute_complexity_for_design**: bool, default False.
 Also compute the complexity for this design. The response will then contain the "Complexity" field as described in the Sequence Complexity API below.
     - **custom_cuts**: JSON, default {}.
