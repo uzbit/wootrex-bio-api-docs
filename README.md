@@ -67,7 +67,7 @@ Used only for Design Type = "minimize_complexity". This is used to help inform t
     - **temp**: Float, default 60.0.
 This is used in the ΔG calculations and TM optimization calculations and should correspond to the target PCA temperature (degrees Celsius).
     - **salt**: Float, default 1.021.
-Used only for Design Types "minimize_complexity" and "gapped_design". This is used in the ΔG calculations as well as the overlap TM optimizations and should correspond to the monovalent salt molar concentration. Currently, this value is provided to the TM calculation for both K+ and Na+. See below for a generic response curve for salt affect on TM. ![saltconc_response](https://github.com/uzbit/wootrex-bio-api-docs/assets/2830915/298e1e93-ac72-452f-9201-532bee8b0d9b)
+Used only for Design Types "minimize_complexity" and "gapped_design". This is used in the ΔG calculations as well as the overlap TM optimizations and should correspond to the monovalent salt molar concentration. Currently, this value is provided to the TM calculation for both K+ and Na+. See below for a generic response curve for salt affect on TM. ![saltconc_response](https://github.com/uzbit/wootrex-bio-api-docs/assets/2830915/930bddc3-8fc6-4fba-a5bb-50187e72d4c0)
     - **optimize_overlap_tm**: Boolean, default False.
 Make oligo overlaps TM optimized to **overlap_tm_target_temp**
     - **optimize_overlap_tm_delta**: Float, default 5.0.
