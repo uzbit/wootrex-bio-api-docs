@@ -42,9 +42,7 @@ The maximum number of basepairs allowed for any given overlap between 3’ and 5
     - **target_primer_length**: Integer, default 20.
 The minimum size in base pairs allowed for any oligo in the design. 
     - **tm_optimize_primers**: Boolean, default True.
-Wether or not to melting temperature (TM) optimize the amplification primers. 
-    - **target_primer_tm_temp**: Integer, default 60.
-The temperature (in degrees Celsius) at wich PCA is performed. This is only used if **tm_optimize_primers** is **True**
+Wether or not to melting temperature (TM) optimize the amplification primers. The target temp is the same as the value given in the **temp** field. 
 
 
 #### Optional Parameters
@@ -67,13 +65,11 @@ Used only for Design Type = "maximize_recycling". This is used to help inform th
     - **min_zscore_cutoff**: Float, default -4.0.
 Used only for Design Type = "minimize_complexity". This is used to help inform the Oligo Design how to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
     - **temp**: Float, default 60.0.
-Used only for Design Types "minimize_complexity". This is used in the ΔG calculations and should correspond to the target PCA temperature (degrees Celsius).
+This is used in the ΔG calculations and TM optimization calculations and should correspond to the target PCA temperature (degrees Celsius).
     - **salt**: Float, default 1.021.
 Used only for Design Types "minimize_complexity" and "gapped_design". This is used in the ΔG calculations as well as the overlap TM optimizations and should correspond to the monovalent salt molar concentration. Currently, this value is provided to the TM calculation for both K+ and Na+. See below for a generic response curve for salt affect on TM. ![saltconc_response](https://github.com/uzbit/wootrex-bio-api-docs/assets/2830915/298e1e93-ac72-452f-9201-532bee8b0d9b)
     - **optimize_overlap_tm**: Boolean, default False.
 Make oligo overlaps TM optimized to **overlap_tm_target_temp**
-    - **optimize_overlap_tm_temp**: Float, default 60.0.
-This should correspond to the target PCA temperature (degrees Celsius).
     - **optimize_overlap_tm_delta**: Float, default 5.0.
 This is the maximum difference from **optimize_overlap_tm** any overlap temp should be considered erroneous. This will cause error messages to be generated and affects the overall optimization as well.
     - **compute_complexity_for_design**: bool, default False.
@@ -126,7 +122,6 @@ curl -0 -X POST "https://homologypath.com/router/" \
        },
        "primer_design_parameters":{
           "target_primer_length":"20",
-          "target_primer_tm_temp":"60",
           "tm_optimize_primers":"true"
        }
     },
@@ -139,7 +134,8 @@ curl -0 -X POST "https://homologypath.com/router/" \
        "recycle_oligos":"true",
        "partition_identity":"0.95",
        "compute_complexity_for_design": false,
-       "custom_cuts": {'example1': [25]}, 
+       "custom_cuts": {'example1': [25]},
+       "temp": "60", 
     }
  }'
 
