@@ -66,9 +66,6 @@ Used only for Design Type = "maximize_recycling". This is used to help inform th
 Used only for Design Type = "minimize_complexity". This is used to help inform the Oligo Design how to identify outlier oligo pairings when estimating the ΔG for each oligo pair. Lower (more negative) values will result in less overall complex regions identified. 
     - **temp**: Float, default 60.0.
 This is used in the ΔG calculations and TM optimization calculations and should correspond to the target PCA temperature (degrees Celsius).
-    - **salt**: Float, default 1.021.
-Used only for Design Types "minimize_complexity" and "gapped_design". This is used in the ΔG calculations as well as the overlap TM optimizations and should correspond to the monovalent salt molar concentration. Currently, this value is provided to the TM calculation for both K+ and Na+. See below for a generic response curve for salt affect on TM. ![saltconc_response](https://github.com/uzbit/wootrex-bio-api-docs/assets/2830915/960e8116-0e5b-4151-baae-9af55ba081bd)
-
     - **optimize_overlap_tm**: Boolean, default False.
 Make oligo overlaps TM optimized to **overlap_tm_target_temp**
     - **optimize_overlap_tm_delta**: Float, default 5.0.
@@ -81,7 +78,16 @@ Provided that a valid JSON object containing sequence name to custom cut positio
         'seq2': [150, 2005]
         }`
 Sequence 'seq1' will have oligos that start/end at positions 50, 900, 1040; and 'seq2' will have oligos that start/end at 150, 2005. This is available only for design_type = "minimize_complexity" or "gapped_design".
-
+    - The following parameters are used for the TM calculation only for Design Types "minimize_complexity" and "gapped_design". The NA + K are used in the ΔG calculations, where all of the following are used in TM overlap optimizations. These should correspond to your experimental conditions as best possible. Refer to the [BioPython documentation](https://biopython.org/docs/1.75/api/Bio.SeqUtils.MeltingTemp.html#Bio.SeqUtils.MeltingTemp.Tm_GC) for more information. All units are concentrations.
+      - **dnac1**: Float, default 25.0 nM
+      - **dnac2**: Float, default 25.0 nM
+      - **Na**: Float, default 50.0 mM
+      - **K**: Float, default 0.0 mM
+      - **Tris**: Float, default 0.0 mM
+      - **Mg**: Float, default 0.0 mM
+      - **dNTPs**: Float, default 0.0 mM
+      - **saltcorr**: Float, default 5.0 mM
+    
 ### Output
 An object that contains the oligo and primer designs, plate maps, and visualization  in JSON. See below for an example of the JSON output.
 
