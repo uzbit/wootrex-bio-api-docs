@@ -93,6 +93,13 @@ An object that contains the oligo and primer designs, plate maps, and visualizat
 
 ### Error Handling
 If the design parameters are invalid or result in an invalid design (low success of assembly, or doesn’t match parameters) verbose errors are returned for resolution.
+When polling for job status there will be one of the following in the response depending on what state the job with `job_id` is currently in:
+- "Finished": The job completed successfully and the response contains job result information.
+- "Failed": The job failed and the response should contain information about it's failure.
+- "Queued": The job is currently queued to execute.
+- "Processing": The job is currently processing, continue polling.
+- "Error": The job is currently in an unknown error state and should be considered lost.
+
 
 ### API Request Examples
 
@@ -1031,8 +1038,15 @@ response = response.json()
 
 # A polling response with successful execution will have a "Finished" field with the "job_id".
 if "Finished" in response:
-    print(f"Finished {data} with:\n", response)
-else:
-    print(f"Not finished, make another request with better parameters!")
+    print(f"Finished {data} with:\n{response}")
+elif "Queued" in response:
+    print(f"Job queued to execute.")
+elif "Failed" in response:
+    print(f"Job failed with {response['Failed']}!")
+elif "Processing" in response:
+    print(f"Job is currently executing.")
+elif "Error" in response:
+    print(f"Job in an unknown state!")
+
 
 ```
