@@ -87,6 +87,15 @@ Sequence 'seq1' will have oligos that start/end at positions 50, 900, 1040; and 
       - **Mg**: Float, default 0.0 mM
       - **dNTPs**: Float, default 0.0 mM
       - **saltcorr**: Float, default 5.0 mM
+   - For NEB Q5 2x Mastermix these parameters should be set as follows:
+      - **dnac1**: 3.0 nM
+      - **dnac2**: 0 nM
+      - **Na**: 20.0 mM
+      - **K**: 0.0 mM
+      - **Tris**: 0.0 mM
+      - **Mg**: 2.0 mM
+      - **dNTPs**: 0.8 mM
+      - **saltcorr**: 6.0 mM
     
 ### Output
 An object that contains the oligo and primer designs, plate maps, and visualization  in JSON. See below for an example of the JSON output.
