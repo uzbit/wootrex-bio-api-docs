@@ -67,7 +67,7 @@ Used only for Design Type = "minimize_complexity". This is used to help inform t
     - **temp**: Float, default 60.0.
 This is used in the ΔG calculations and TM optimization calculations and should correspond to the target PCA temperature (degrees Celsius).
     - **optimize_overlap_tm**: Boolean, default False.
-Make oligo overlaps TM optimized to **overlap_tm_target_temp**
+Make oligo overlaps TM optimized to **temp**
     - **optimize_overlap_tm_delta**: Float, default 5.0.
 This is the maximum difference from **optimize_overlap_tm** any overlap temp should be considered erroneous. This will cause error messages to be generated and affects the overall optimization as well.
     - **compute_complexity_for_design**: bool, default False.
