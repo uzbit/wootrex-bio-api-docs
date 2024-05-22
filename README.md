@@ -72,7 +72,8 @@ Make oligo overlaps TM optimized to **temp**
 This is the maximum difference from **optimize_overlap_tm** any overlap temp should be considered erroneous. This will cause error messages to be generated and affects the overall optimization as well.
     - **compute_complexity_for_design**: bool, default False.
 Also compute the complexity for this design. The response will then contain the "Complexity" field as described in the Sequence Complexity API below.
-    - **custom_cuts**: JSON, default {}.
+    - **design_files**: List, default []. List of base64 encoded design files to use for Oligo Reuse. See [oligo_design_reuse_test.py](https://github.com/uzbit/wootrex-bio-api-docs/blob/main/oligo_design_reuse_test.py) for a full example of how to send this API request.
+    - **custom_cuts**: JSON, default {}. 
 Provided that a valid JSON object containing sequence name to custom cut positions list, designs will be made to ensure that oligos will end or start (depending which oligo end/start is closest) at the cut positions given. For example, given: `{
         'seq1': [50, 900, 1040], 
         'seq2': [150, 2005]
