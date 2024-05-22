@@ -156,7 +156,7 @@ curl -0 -X POST "https://homologypath.com/router/" \
        "row_major":"true",
        "recycle_oligos":"true",
        "partition_identity":"0.95",
-       "compute_complexity_for_design": false,
+       "compute_complexity_for_design": "false",
        "custom_cuts": {"example1": ["25"]},
        "temp": "60" 
     }
