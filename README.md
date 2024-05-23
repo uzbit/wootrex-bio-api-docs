@@ -117,7 +117,7 @@ Below is an example of a command line to POST a job request to the Oligo Design 
 
 ```
 curl -0 -X POST "https://homologypath.com/router/" \
--H "Authorization: Token c90cf4f08c9641dff1daf29777df9b9319ddfbfc" \
+-H "Authorization: Token YOUR_API_TOKEN_HERE" \
 -H "Content-Type: application/json" \
 -d \
 '
