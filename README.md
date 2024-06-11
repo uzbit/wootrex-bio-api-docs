@@ -1074,6 +1074,157 @@ Depending on how large the request was, this polling request may need to be done
 ```
 
 
+## Sequence Design
+
+The Sequence Design bioinformatics software package and API provide a simple and intuitive methods to translate, reverse-translate, and codon optimize your DNA or protein sequences. 
+
+### Parameters
+The API accepts a JSON object containing the following:
+
+#### API
+**api**: A required string specifying which API is being requested. Valid strings are: "oligo_design", "sequence_complexity", "sequence_design"
+
+#### Required Parameters
+**required_parameters**: A required JSON object containing the following entries:
+
+- **sequences**: A list of JSON objects of sequence records that include the following:
+
+    - **sequence_name**: String, a unique name for each sequence.
+    - **sequence**: String, ambiguous/unambiguous DNA sequence.
+
+- **design_type**: String, should be one of: "Translate", "Reverse Translate", or "Minimize Complexity"
+Where the value should be "Translate" for DNA -> Protein, "Reverse Translate" for Protein -> DNA, and when using "Minimize Complexity" either Protein or DNA is accepted, but the result will be DNA.
+
+- **static_seed**: Boolean.
+If this is True, the codon usage will be the same for each amino acid. Specifically, the one with highest frequency in the codon table selected or given will be used. If False, the codon usages should be randomly drawn based on the codon table given. 
+ 
+#### Optional Parameters
+- **optional_parameters**: An optional JSON object containing any of the following:
+
+    - **design_name**: String, default "sequence_design01".
+User specified name for the design. The files emailed will have this name.
+    - **emails**: String, default is empty.
+A comma separated list of emails to which to send the design files.
+    - **avoid_res**: String, default is empty.
+A comma separated list of restriction enzymes (e.g. HindIII, BsaI) to avoid when reverse translating to DNA.
+    - **codon_table_name**: String, "uniform".
+The codon table to use from the "uniform" plus the list given [here](https://pypi.org/project/python-codon-tables/)
+    - **custom_codon_table**: A JSON object containing a custom codon table similar to the following:
+```
+{
+    "Name": "Pongo pygmaeus abelii",
+    "*": {
+      "UAA": 0.11,
+      "UAG": 0.11,
+      "UGA": 0.78
+    },
+    "A": {
+      "GCA": 0.23,
+      "GCC": 0.29,
+      "GCG": 0,
+      "GCU": 0.48
+    },
+    "C": {
+      "UGC": 0.63,
+      "UGU": 0.37
+    },
+    "D": {
+      "GAC": 0.62,
+      "GAU": 0.38
+    },
+    "E": {
+      "GAA": 0.33,
+      "GAG": 0.67
+    },
+    "F": {
+      "UUC": 0.58,
+      "UUU": 0.42
+    },
+    "G": {
+      "GGA": 0.27,
+      "GGC": 0.31,
+      "GGG": 0.31,
+      "GGU": 0.11
+    },
+    "H": {
+      "CAC": 0.52,
+      "CAU": 0.48
+    },
+    "I": {
+      "AUA": 0.16,
+      "AUC": 0.61,
+      "AUU": 0.23
+    },
+    "K": {
+      "AAA": 0.39,
+      "AAG": 0.61
+    },
+    "L": {
+      "CUA": 0.08,
+      "CUC": 0.22,
+      "CUG": 0.37,
+      "CUU": 0.13,
+      "UUA": 0.06,
+      "UUG": 0.14
+    },
+    "M": {
+      "AUG": 1
+    },
+    "N": {
+      "AAC": 0.5,
+      "AAU": 0.5
+    },
+    "P": {
+      "CCA": 0.29,
+      "CCC": 0.27,
+      "CCG": 0.04,
+      "CCU": 0.4
+    },
+    "Q": {
+      "CAA": 0.46,
+      "CAG": 0.54
+    },
+    "R": {
+      "AGA": 0.3,
+      "AGG": 0.24,
+      "CGA": 0.12,
+      "CGC": 0.12,
+      "CGG": 0.18,
+      "CGU": 0.04
+    },
+    "S": {
+      "AGC": 0.2,
+      "AGU": 0.23,
+      "UCA": 0.14,
+      "UCC": 0.14,
+      "UCG": 0.01,
+      "UCU": 0.28
+    },
+    "T": {
+      "ACA": 0.33,
+      "ACC": 0.25,
+      "ACG": 0.16,
+      "ACU": 0.25
+    },
+    "V": {
+      "GUA": 0.13,
+      "GUC": 0.26,
+      "GUG": 0.49,
+      "GUU": 0.12
+    },
+    "W": {
+      "UGG": 1
+    },
+    "Y": {
+      "UAC": 0.47,
+      "UAU": 0.53
+    }
+  }
+
+```
+
+
+
 ## RESTful Web Service
 - Secure network interface
 - Can be incorporated into various computational pipelines
