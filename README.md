@@ -1107,7 +1107,7 @@ User specified name for the design. The files emailed will have this name.
 A comma separated list of emails to which to send the design files.
     - **avoid_res**: String, default is empty.
 A comma separated list of restriction enzymes (e.g. HindIII, BsaI) to avoid when reverse translating to DNA.
-    - **codon_table_name**: String, "uniform".
+    - **codon_table_name**: String, default "uniform".
 The codon table to use from the "uniform" plus the list given [here](https://pypi.org/project/python-codon-tables/)
     - **custom_codon_table**: A JSON object containing a custom codon table similar to the following:
 ```
