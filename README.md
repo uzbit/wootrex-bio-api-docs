@@ -608,10 +608,10 @@ A palindrome repeat is identified as a contiguous region that would likely form 
 A tandem repeat is identified as a contiguous region has repeated number of k-mers of a specific type. For instance, a homopolymer is a special case of a tandem repeate where k=1. Another example of a tandem repeat is where the kmer "CGA" is repeated 4 times in a row: CGACGACGACGA. These types of repeats can cause issues in oligo synthesis. Tandem repeats are displayed in pink.
 
 ##### ΔG - Overlapping Oligo Pairs (Code 401)
-Two oligos designed to overlap but have a higher (more positive) the other oligos do that are intended to overlap by at least abs(Minimum Z-Score Cutoff). Represented in darker blue in the result image. 
+Two oligos that were designed to overlap were found to have lower (more positive ΔG) than expected affinity when comparing to other overlapping oligos in said design. This occurs when their ΔG results in a Z-Score greater than abs(Minimum Z-Score Cutoff) This will be represented in darker blue in the result image (not pictured above).
 
 ##### ΔG - Self Oligo Pairs (Code 402)
-An oligo that has higher affinity to itself than the other oligos do to themselves by at least Minimum Z-Score Cutoff. Represented in darker red in the result image. 
+An oligo that has higher (more negative ΔG) affinity to itself than the other oligos do to themselves by at least Minimum Z-Score Cutoff. Represented in darker red in the result image. 
 
 ##### ΔG - Disjoint Oligo Pairs (Code 403)
 An oligo pair that have higher (more negative ΔG) affinity to each other than other oligos do by at least Minimum Z-Score Cutoff. Represented in darker green in the result image. 
